@@ -11,7 +11,7 @@ RUN case "$TARGETOS" in \
     case "$TARGETARCH" in \
       "amd64") smartdns_variant="smartdns-x86_64" ;; \
       "arm64") smartdns_variant="smartdns-aarch64" ;; \
-      *) echo "ERROR: Unsupported platform: ${TARGETARCH}"; exit 1 ;; \
+      *) echo "ERROR: Unsupported CPU architecture: ${TARGETARCH}"; exit 1 ;; \
     esac && \
     wget "${URL}/$smartdns_variant" -O /usr/sbin/smartdns && \
     chmod +x /usr/sbin/smartdns
