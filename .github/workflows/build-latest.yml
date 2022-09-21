@@ -24,20 +24,11 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.CR_PAT }}
 
-      - name: Build x86_64
+      - name: Build and push
         uses: docker/build-push-action@v3
         with:
           push: true
           tags: ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           build-args: |
-            URL=https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64
-
-      - name: Build arm64
-        uses: docker/build-push-action@v3
-        with:
-          push: true
-          tags: ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
-          platforms: linux/arm64
-          build-args: |
-            URL=https://github.com/pymumu/smartdns/releases/latest/download/smartdns-aarch64
+            URL=https://github.com/pymumu/smartdns/releases/latest/download
