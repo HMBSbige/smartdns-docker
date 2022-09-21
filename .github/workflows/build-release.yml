@@ -32,7 +32,9 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:${{ steps.tag.outputs.tag }}
+          tags: |
+            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
+            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:${{ steps.tag.outputs.tag }}
           platforms: linux/amd64,linux/arm64
           build-args: |
             URL=https://github.com/pymumu/smartdns/releases/download/Release${{ steps.tag.outputs.tag }}
