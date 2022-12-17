@@ -29,8 +29,8 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
             ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:${{ github.ref_name }}
+            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
           platforms: linux/amd64,linux/arm64
           build-args: |
             URL=https://github.com/pymumu/smartdns/releases/download/Release${{ github.ref_name }}
@@ -41,4 +41,5 @@ jobs:
           repository: ${{ github.repository }}
           repository_owner: ${{ github.repository_owner }}
           untagged_only: true
+          except_untagged_multiplatform: true
           owner_type: user
