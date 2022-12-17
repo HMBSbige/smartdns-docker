@@ -38,3 +38,11 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: |
             URL=https://github.com/pymumu/smartdns/releases/download/Release${{ steps.tag.outputs.tag }}
+
+      - uses: Chizkiyahu/delete-untagged-ghcr-action@v2
+        with:
+          token: ${{ secrets.CR_PAT }}
+          repository: ${{ github.repository }}
+          repository_owner: ${{ github.repository_owner }}
+          untagged_only: true
+          owner_type: user
