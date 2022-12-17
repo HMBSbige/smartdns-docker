@@ -11,10 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Get tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -34,10 +30,10 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:latest
-            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:${{ steps.tag.outputs.tag }}
+            ghcr.io/${{ env.Owner }}/${{ env.ProjectName }}:${{ github.ref_name }}
           platforms: linux/amd64,linux/arm64
           build-args: |
-            URL=https://github.com/pymumu/smartdns/releases/download/Release${{ steps.tag.outputs.tag }}
+            URL=https://github.com/pymumu/smartdns/releases/download/Release${{ github.ref_name }}
 
       - uses: Chizkiyahu/delete-untagged-ghcr-action@v2
         with:
