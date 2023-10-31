@@ -35,7 +35,7 @@ jobs:
           build-args: |
             URL=https://github.com/pymumu/smartdns/releases/download/Release${{ github.ref_name }}
 
-      - uses: Chizkiyahu/delete-untagged-ghcr-action@v2
+      - uses: Chizkiyahu/delete-untagged-ghcr-action@v3
         with:
           token: ${{ secrets.CR_PAT }}
           repository: ${{ github.repository }}
